@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const auth = require('./authentication/auth')
 require('dotenv').config();
 
+
 // Import API routes
 const userRoutes = require("./routes/user.routes");
 
@@ -31,6 +32,6 @@ const StartApi = async() => {
 }
 
 // Add security layer to the API
-// fastify.addHook("preHandler", auth);
+fastify.addHook("preHandler", auth);
 
 StartApi();

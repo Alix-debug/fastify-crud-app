@@ -30,7 +30,4 @@ const StartApi = async() => {
     }
 }
 
-// Add security layer to the API
-// fastify.addHook("preHandler", auth);
-
 StartApi();
