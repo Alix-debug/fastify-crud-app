@@ -1,0 +1,59 @@
+const User = require('../models/user.model');
+
+//Route to retrieve all users from db
+async function getAllUsers(req, reply) {
+    try{
+        const users = await User.find()
+        reply.send(users);
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+//Route to retrieve a specific user by id
+async function getUserById(req, reply) {
+    try{
+        const user = await User.findById(req.params.id);
+        reply.send(user);
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+//Route to add a user inside db (CRUD Create)
+async function createUser(req, reply) {
+    try{
+        const user = new User(req.body);
+        const result = await user.save();
+        reply.send(result);
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+//Route to update a user inside db (CRUD Update)
+async function updateUser(req, reply) {
+    try{
+        reply.send("Not implemented yet");
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+//Route to delete a user inside db (CRUD Delete)
+async function deleteUser(req, reply) {
+    try{
+        await User.findByIdAndDelete(req.params.id);
+        reply.send(203).send("");
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+module.exports = {
+    getAllUsers,
+    getUserById,
+    createUser,
+    updateUser,
+    deleteUser
+};
