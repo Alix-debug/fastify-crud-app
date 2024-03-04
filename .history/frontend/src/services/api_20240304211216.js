@@ -27,6 +27,7 @@ const setAuthHeaders = (email, password) => {
 // Sign in 
 export const signIn = async (userData) => {
   try {
+    
     const response = await api.get(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
     return response.data;
   } catch (error) {
@@ -36,25 +37,25 @@ export const signIn = async (userData) => {
 };
 
 // Update User
-export const modifyUser = async (userData) => {
-  try {
-    const response = await api.put(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
-    return response.data;
-  } catch (error) {
-    console.error('Error occured while updating user:', error);
-    throw error;
-  }
-};
+// export const modifyUser = async (userData) => {
+//   try {
+//     const response = await api.put(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error occured while updating user:', error);
+//     throw error;
+//   }
+// };
 
 
-// delete User
-export const deleteUser= async (userData) => {
-  try {
-    const response = await api.delete(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
-    return response.data;
-  } catch (error) {
-    console.error('Error occured while deleting user:', error);
-    throw error;
-  }
-};
+// // delete User
+// export const deleteUser= async (userData) => {
+//   try {
+//     const response = await api.delete(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error occured while deleting user:', error);
+//     throw error;
+//   }
+// };
 

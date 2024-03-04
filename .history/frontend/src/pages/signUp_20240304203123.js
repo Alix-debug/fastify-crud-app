@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createUser } from '../services/api';
 
 const SignUp = () => {
@@ -11,8 +11,6 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
   });
-
-  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -40,10 +38,8 @@ const SignUp = () => {
       // Make the API request
       const user = await createUser(data);
 
-      // redirect to a home page
-      console.log('User logged in successfully:', user);
-      navigate('/home', { params: user });
-
+      // Handle success (e.g., redirect to a success page)
+      console.log('User created successfully:', user);
     } catch (error) {
       // Handle error (e.g., display an error message)
       console.error('Error creating user:', error);
@@ -103,7 +99,6 @@ const SignUp = () => {
       </div>
       <button type="submit">Sign Up</button>
     </form>
-    <Link to="/signin">Already have an account? Sign In</Link>
     </div>
   );
 };

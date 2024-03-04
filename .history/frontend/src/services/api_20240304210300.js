@@ -27,7 +27,10 @@ const setAuthHeaders = (email, password) => {
 // Sign in 
 export const signIn = async (userData) => {
   try {
+    console.log('coucou user', userData)
+    console.log(setAuthHeaders(userData.Email, userData.Password));
     const response = await api.get(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
+    console.log('coucou',response)
     return response.data;
   } catch (error) {
     console.error('Error occured while creating user:', error);

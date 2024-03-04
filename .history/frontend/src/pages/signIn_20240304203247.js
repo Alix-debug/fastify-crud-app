@@ -1,5 +1,5 @@
 import React, { useState }from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { signIn } from '../services/api';
 
 
@@ -9,8 +9,6 @@ const SignIn = () => {
     email: '',
     password: '',
   });
-
-  const navigate = useNavigate(); // Get access to the history object
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -27,10 +25,8 @@ const SignIn = () => {
       // Make the API request
       const user = await signIn(formData);
 
-      // redirect to a home page
+      // Handle success (e.g., redirect to a success page)
       console.log('User logged in successfully:', user);
-      // Redirect to the home page with the user data as parameters
-      navigate(`/home/${user.id}`, { state: { user } });
     } catch (error) {
       // Handle error (e.g., display an error message)
       console.error('Error while trying to log in user:', error);

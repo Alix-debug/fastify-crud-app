@@ -29,8 +29,9 @@ const SignIn = () => {
 
       // redirect to a home page
       console.log('User logged in successfully:', user);
-      // Redirect to the home page with the user data as parameters
-      navigate(`/home/${user.id}`, { state: { user } });
+      return (
+        <Link to={`/home?firstName=${user.firstName}&LastName=${user.LastName}&email=${data.Email}`}>Go to My Profile</Link>
+      );
     } catch (error) {
       // Handle error (e.g., display an error message)
       console.error('Error while trying to log in user:', error);

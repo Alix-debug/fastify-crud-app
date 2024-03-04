@@ -35,7 +35,7 @@ export const signIn = async (userData) => {
   }
 };
 
-// Update User
+Update User
 export const modifyUser = async (userData) => {
   try {
     const response = await api.put(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));

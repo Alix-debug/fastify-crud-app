@@ -10,12 +10,11 @@ export const createUser = async (userData) => {
     const response = await api.post('/users', userData);
     return response.data;
   } catch (error) {
-    console.error('Error occured while creating user:', error);
+    console.error('Error creating user:', error);
     throw error;
   }
 };
 
-// configure Basic Auth headers
 const setAuthHeaders = (email, password) => {
   return {
     headers: {
@@ -23,38 +22,27 @@ const setAuthHeaders = (email, password) => {
     },
   };
 };
-
 // Sign in 
 export const signIn = async (userData) => {
   try {
+    console.log('coucou user', userData)
+    console.log(setAuthHeaders(userData.Email, userData.Password));
     const response = await api.get(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
+    console.log('coucou',response)
     return response.data;
   } catch (error) {
-    console.error('Error occured while creating user:', error);
+    console.error('Error creating user:', error);
     throw error;
   }
 };
 
 // Update User
-export const modifyUser = async (userData) => {
+export const modifyProfile = async (userData) => {
   try {
     const response = await api.put(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
     return response.data;
   } catch (error) {
-    console.error('Error occured while updating user:', error);
+    console.error('Error creating user:', error);
     throw error;
   }
 };
-
-
-// delete User
-export const deleteUser= async (userData) => {
-  try {
-    const response = await api.delete(`/users/${userData.id}`, setAuthHeaders(userData.email, userData.password));
-    return response.data;
-  } catch (error) {
-    console.error('Error occured while deleting user:', error);
-    throw error;
-  }
-};
-

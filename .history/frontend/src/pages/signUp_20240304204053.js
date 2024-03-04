@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { createUser } from '../services/api';
 
 const SignUp = () => {
@@ -12,7 +12,7 @@ const SignUp = () => {
     confirmPassword: '',
   });
 
-  const navigate = useNavigate(); 
+  const history = useHistory(); // Get access to the history object
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -42,7 +42,7 @@ const SignUp = () => {
 
       // redirect to a home page
       console.log('User logged in successfully:', user);
-      navigate('/home', { params: user });
+      history.push('/Home', { user });
 
     } catch (error) {
       // Handle error (e.g., display an error message)

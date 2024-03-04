@@ -42,7 +42,7 @@ const SignUp = () => {
 
       // redirect to a home page
       console.log('User logged in successfully:', user);
-      navigate('/home', { params: user });
+      navigate('/Home', { user });
 
     } catch (error) {
       // Handle error (e.g., display an error message)
