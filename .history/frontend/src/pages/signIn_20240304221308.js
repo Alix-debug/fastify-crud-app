@@ -26,13 +26,13 @@ const SignIn = () => {
     try {
       // Make the API request
       const user = await signIn(formData);
-      console.log('coucou sign in user',user)
+
       // redirect to a home page
       console.log('User logged in successfully:', user);
       // Redirect to the home page with the user data as parameters
-      navigate(`/home/${user._id}/${user.firstName}/${user.LastName}/${user.Email}}`);
+      navigate(`/home/${user._id}%${user.firstName}%${user.LastName}`, { state: { user } });
     } catch (error) {
-      // Handle error 
+      // Handle error (e.g., display an error message)
       console.error('Error while trying to log in user:', error);
     }
   };

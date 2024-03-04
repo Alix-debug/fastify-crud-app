@@ -36,20 +36,20 @@ export const signIn = async (userData) => {
 };
 
 // Update User
-export const updateUser = async (userId, updatedUserData) => {
+export const modifyUser = async (userData) => {
   try {
-    const body = {
-        "firstName":updatedUserData.firstName,
-        "LastName": updatedUserData.LastName,
-        "Email": updatedUserData.Email,
-        "Password": updatedUserData.Password
+    const updateUser = {
+      "firstName": userData.firstName,
+      "LastName": userData.LastName,
+      "Email": userData.Email,
+      "Password": userData.Password 
     }
-    
-    console.log('id',userId,'user updated', body );
-    const response = await api.put(`/users/${userId}`, body, setAuthHeaders(updatedUserData.Email, updatedUserData.Password));
+
+    console.log('coucou, user',userData);
+    const response = await api.put(`/users/${userData.id}`, setAuthHeaders(userData.Email, userData.Password), updateUser);
     return response.data;
   } catch (error) {
-    console.error('Error occurred while updating user:', error);
+    console.error('Error occured while updating user:', error);
     throw error;
   }
 };

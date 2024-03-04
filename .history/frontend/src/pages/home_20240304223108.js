@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { updateUser } from '../services/api';
+import { modifyUser } from '../services/api';
 
 const Home = () => {
 
-  const { id, firstname, lastname, email} = useParams();
+  const { id, firstname, lastname, email, password} = useParams();
   const [formData, setFormData] = useState({
+    id: id,
     firstName: lastname,
     LastName: firstname,
-    Email: email
+    Email: email,
+    Password: password
   });
 
   const handleChange = (e) => {
@@ -24,7 +26,7 @@ const Home = () => {
 
     try {
       // Make the API request
-      const user = await updateUser(id,formData);
+      const user = await modifyUser(formData);
 
       // redirect to a home page
       console.log('User has been modified in successfully:', user);
@@ -73,12 +75,12 @@ const Home = () => {
       <div>
         <label for="update-password">Password</label>
         <input
-          id="Password"
+          id="password"
           type="password"
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Update my profile</button>
+      <button type="Update my Infos">Sign In</button>
     </form>
     </div>
     

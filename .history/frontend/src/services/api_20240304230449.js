@@ -38,15 +38,7 @@ export const signIn = async (userData) => {
 // Update User
 export const updateUser = async (userId, updatedUserData) => {
   try {
-    const body = {
-        "firstName":updatedUserData.firstName,
-        "LastName": updatedUserData.LastName,
-        "Email": updatedUserData.Email,
-        "Password": updatedUserData.Password
-    }
-    
-    console.log('id',userId,'user updated', body );
-    const response = await api.put(`/users/${userId}`, body, setAuthHeaders(updatedUserData.Email, updatedUserData.Password));
+    const response = await api.put(`/users/${userId}`, updatedUserData, setAuthHeaders(updatedUserData.email, updatedUserData.password));
     return response.data;
   } catch (error) {
     console.error('Error occurred while updating user:', error);

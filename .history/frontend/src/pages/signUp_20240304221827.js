@@ -41,12 +41,11 @@ const SignUp = () => {
       const user = await createUser(data);
 
       // redirect to a home page
-      console.log('User created successfully:', user);
-      // Redirect to the home page with the user data as parameters
-      navigate(`/home/${user._id}/${user.firstName}/${user.LastName}/${user.Email}}`);
-    
+      console.log('User logged in successfully:', user);
+      navigate('/home', { params: user });
+
     } catch (error) {
-      // Handle error 
+      // Handle error (e.g., display an error message)
       console.error('Error creating user:', error);
     }
   };

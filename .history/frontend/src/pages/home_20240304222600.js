@@ -1,37 +1,16 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { updateUser } from '../services/api';
 
 const Home = () => {
 
-  const { id, firstname, lastname, email} = useParams();
-  const [formData, setFormData] = useState({
-    firstName: lastname,
-    LastName: firstname,
-    Email: email
-  });
-
+  const { id, firstname, lastname, email, password} = useParams();
+  
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Make the API request
-      const user = await updateUser(id,formData);
-
-      // redirect to a home page
-      console.log('User has been modified in successfully:', user);
-    } catch (error) {
-      // Handle error
-      console.error('Error while trying to modify the user:', error);
-    }
   };
 
   return (
@@ -73,12 +52,12 @@ const Home = () => {
       <div>
         <label for="update-password">Password</label>
         <input
-          id="Password"
+          id="password"
           type="password"
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Update my profile</button>
+      <button type="submit">Sign In</button>
     </form>
     </div>
     

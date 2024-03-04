@@ -42,9 +42,8 @@ const SignUp = () => {
 
       // redirect to a home page
       console.log('User created successfully:', user);
-      // Redirect to the home page with the user data as parameters
-      navigate(`/home/${user._id}/${user.firstName}/${user.LastName}/${user.Email}}`);
-    
+      navigate('/home', { params: user });
+
     } catch (error) {
       // Handle error 
       console.error('Error creating user:', error);

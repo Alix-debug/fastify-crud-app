@@ -8,7 +8,8 @@ const Home = () => {
   const [formData, setFormData] = useState({
     firstName: lastname,
     LastName: firstname,
-    Email: email
+    Email: email,
+    Password: ''
   });
 
   const handleChange = (e) => {
@@ -73,7 +74,7 @@ const Home = () => {
       <div>
         <label for="update-password">Password</label>
         <input
-          id="Password"
+          id="password"
           type="password"
           onChange={handleChange}
         />

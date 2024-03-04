@@ -38,7 +38,7 @@ export const signIn = async (userData) => {
 // Update User
 export const updateUser = async (userId, updatedUserData) => {
   try {
-    const body = {
+    body = {
         "firstName":updatedUserData.firstName,
         "LastName": updatedUserData.LastName,
         "Email": updatedUserData.Email,
