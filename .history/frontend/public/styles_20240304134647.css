@@ -1,0 +1,51 @@
+:root {
+    --border-color: rgb(216, 219, 222);
+    --label-width: 5rem;
+  }
+  
+  body {
+    background-color: rgb(185, 203, 230);
+    font-family: sans-serif;
+  }
+  
+  button {
+    background-color: rgb(8, 8, 8);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .buttons {
+    padding-left: 10px;
+  }
+  
+  div {
+    margin-bottom: 0.5rem;
+  }
+  
+  h2 {
+    border-top: 3px solid rgb(255, 255, 255);
+    padding-top: 1rem;
+  }
+  
+  input {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+    width: 15rem;
+  }
+  
+  label {
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: right;
+    width: var(--label-width);
+  }
+  
+  select {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+  }

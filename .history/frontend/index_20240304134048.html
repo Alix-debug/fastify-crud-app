@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="fetch-util.js"></script>
+    <script src="ui.js"></script>
+  </head>
+  <body>
+    <h1>CRUD App</h1>
+
+    <form id="sign-up">
+      <h2>Sign Up</h2>
+      <div>
+        <label for="sign-up-first-name">First Name</label>
+        <input
+          autocomplete="fisrt-name"
+          id="sign-up-first-name"
+          required
+          type="firstName"
+          value="Name"
+        />
+      </div>
+      <div>
+        <label for="sign-up-last-name">Last Name</label>
+        <input
+          autocomplete="lastName"
+          id="sign-up-last-name"
+          required
+          type="lastName"
+          value="Name"
+        />
+      </div>
+      <div>
+        <label for="sign-up-email">Email</label>
+        <input
+          autocomplete="email"
+          id="sign-up-email"
+          required
+          type="email"
+          value="your@email.com"
+        />
+      </div>
+      <div>
+        <label for="sign-up-password">Password</label>
+        <input
+          autocomplete="current-password"
+          id="sign-up-password"
+          required
+          type="password"
+          value="secret"
+        />
+      </div>
+      <div>
+        <label for="sign-up-confirm-password">Confirm Password</label>
+        <input
+          autocomplete="current-password"
+          id="sign-up-confirm-password"
+          required
+          type="password"
+          value="secret"
+        />
+      </div>
+      <button>Sign Up</button>
+    </form>
+
+    <form id="sign-in">
+      <h2>Login</h2>
+      <div>
+        <label for="sign-in-email">Email</label>
+        <input
+          id="sign-in-email"
+          autocomplete="email"
+          value="your@mail.com"
+        />
+      </div>
+      <div>
+        <label for="sign-in-password">Password</label>
+        <input
+          id="sign-in-password"
+          type="password"
+          autocomplete="current-password"
+          value="secret"
+        />
+      </div>
+      <button>Sign In</button>
+    </form>
+
+    <form id="logout">
+      <h2>Logout</h2>
+      <button>Logout</button>
+    </form>
+
+    <form id="change-password">
+      <h2>Change Password</h2>
+      <div>
+        <label for="change-password-email">Email</label>
+        <input
+          id="change-password-email"
+          autocomplete="email"
+          value="your@mail.com"
+        />
+      </div>
+      <div>
+        <label for="change-password-old-password">Current Password</label>
+        <input
+          id="change-password-old-password"
+          type="password"
+          autocomplete="current-password"
+        />
+      </div>
+      <div>
+        <label for="change-password-new-password">New Password</label>
+        <input
+          id="change-password-new-password"
+          type="password"
+          autocomplete="current-password"
+        />
+      </div>
+      <button>Change Password</button>
+    </form>
+
+    <form id="forgot-password">
+      <h2>Forgot Password</h2>
+      <div>
+        <label for="forgot-password-email">Email</label>
+        <input
+          id="forgot-password-email"
+          autocomplete="email"
+          value="your@mail.com"
+        />
+      </div>
+      <button>Forgot Password</button>
+    </form>
+
+    <form id="delete-my-account">
+      <h2>Delete my account</h2>
+      <div>
+        <label for="delete-my-account">Enter your email address for confirmation</label>
+        <input
+          id="delete-my-account"
+          autocomplete="email"
+          value="your@mail.com"
+        />
+      </div>
+      <button>delete</button>
+    </form>
+  </body>
+</html>
