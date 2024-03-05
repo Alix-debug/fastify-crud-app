@@ -21,10 +21,23 @@ async function getUserById(req, reply) {
 }
 
 //Route to retrieve a specific user by email
-async function getUserByEmail(req, reply) {
+async function getUser(req, reply) {
     try{
-        const user = await User.find({Email: req.params.email});
-        reply.send(user);
+        console.log("COUCOU getUser");
+        const user = await User.findOne({ Email: req.params.email }).select("Password");
+        console.log('coucou controllers',user)
+		if(!user) {
+			reply.status(401).send({ error: "Incorrect password or email"});
+		}
+        console.log('coucou password',req.params.password)
+		// Compare password with hash
+		const match = await user.comparePasswords(req.params.password);
+		if (!match) {
+			return reply.status(401).send({ error: "Incorrect password" });
+		}
+
+        const info_user = await User.findById(user._id.toString());
+        reply.send(info_user);
     } catch(err) {
         reply.status(500).send(err);
     }
@@ -42,11 +55,30 @@ async function createUser(req, reply) {
 }
 
 //Route to update a user inside db (CRUD Update)
-async function updateUser(req, reply) {
+async function updateUserById(req, reply) {
     try{
         const user = await User.findByIdAndUpdate(req.params.id, req.body, { 
             new: true // retrieve the updated user
         });
+        reply.send(user);
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+async function updateUser(req, reply) {
+    try{
+        // check if user exists and select password
+        const user = await User.findOne({ Email: req.params.email }).select("Email firstName LastName Password");
+		if(!user) {
+			reply.status(401).send({ error: "Incorrect Email"});
+		}
+
+		// Compare password with hash
+		const match = await user.comparePasswords(req.params.password);
+		if (!match) {
+			return reply.status(401).send({ error: "Incorrect password" });
+		}
         reply.send(user);
     } catch(err) {
         reply.status(500).send(err);
@@ -66,7 +98,7 @@ async function deleteUser(req, reply) {
 module.exports = {
     getAllUsers,
     getUserById,
-    getUserByEmail,
+    getUser,
     createUser,
     updateUser,
     deleteUser
