@@ -47,6 +47,7 @@ async function getUser(req, reply) {
 //Route to add a user inside db (CRUD Create)
 async function createUser(req, reply) {
     try{
+        console.log("COUCOU createUser controllers");
         const user = new User(req.body);
         const result = await user.save();
         reply.send(result);
@@ -80,7 +81,12 @@ async function updateUser(req, reply) {
 		if (!match) {
 			return reply.status(401).send({ error: "Incorrect password" });
 		}
-        reply.send(user);
+
+        // Update User
+        const newUser = await User.findByIdAndUpdate(user._id, req.body, { 
+            new: true // retrieve the updated user
+        });
+        reply.send(newUser);
     } catch(err) {
         reply.status(500).send(err);
     }
