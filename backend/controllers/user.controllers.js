@@ -30,6 +30,7 @@ async function getUser(req, reply) {
 			reply.status(401).send({ error: "Incorrect password or email"});
 		}
         console.log('coucou password',req.params.password)
+
 		// Compare password with hash
 		const match = await user.comparePasswords(req.params.password);
 		if (!match) {
@@ -85,11 +86,38 @@ async function updateUser(req, reply) {
     }
 }
 
-//Route to delete a user inside db (CRUD Delete)
-async function deleteUser(req, reply) {
+//Route to delete a user inside db using ID (CRUD Delete)
+async function deleteUserbyId(req, reply) {
     try{
         await User.findByIdAndDelete(req.params.id);
         reply.send(204).send("");
+    } catch(err) {
+        reply.status(500).send(err);
+    }
+}
+
+//Route to delete a user inside db using basic Auth(CRUD Delete)
+async function deleteUser(req, reply) {
+    try{
+        console.log('coucou deleteUser controllers');
+        // check if user exists and select email and password
+        const user = await User.findOne({ Email: req.params.email }).select("Email Password _id");
+		if(!user) {
+			reply.status(401).send({ error: "Incorrect Email"});
+		}
+        console.log("user found", user);
+
+		// Compare password with hash
+		const match = await user.comparePasswords(req.params.password);
+		if (!match) {
+			return reply.status(401).send({ error: "Incorrect password" });
+		}
+
+        // Delete user
+        console.log("id for deletion", user._id);
+        await User.findByIdAndDelete(user._id);
+        reply.send(204);
+
     } catch(err) {
         reply.status(500).send(err);
     }
