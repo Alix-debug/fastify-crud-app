@@ -41,7 +41,6 @@ const Home = () => {
 
       // redirect to a / page
       console.log('User has been deleted successfully:', result);
-      navigate('/');
     } catch (error) {
       // Handle error
       console.error('Error while trying to delete the user:', error);

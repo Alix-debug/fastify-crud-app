@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { deleteUser, updateUser } from '../services/api';
+import { useParams } from 'react-router-dom';
+import { updateUser } from '../services/api';
 
 const Home = () => {
-  const navigate = useNavigate();
+
   const { firstname, lastname} = useParams();
   const [formData, setFormData] = useState();
 
@@ -19,32 +19,15 @@ const Home = () => {
     e.preventDefault();
 
     try {
-      console.log('coucou HOME.js handleSubmit to update user', formData)
+      console.log('coucou HOME.js,formdata', formData)
       // Make the API request
       const user = await updateUser(formData);
-      // redirect to a home page with updated info
+
+      // redirect to a home page
       console.log('User has been modified in successfully:', user);
-      navigate(`/home/${user.firstName}/${user.LastName}/${user.Email}}`);
     } catch (error) {
       // Handle error
       console.error('Error while trying to modify the user:', error);
-    }
-  };
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-
-    try {
-      console.log('handleDelete formData', formData);
-      // Make the API request to delete the user
-      const result = await deleteUser(formData);
-
-      // redirect to a / page
-      console.log('User has been deleted successfully:', result);
-      navigate('/');
-    } catch (error) {
-      // Handle error
-      console.error('Error while trying to delete the user:', error);
     }
   };
 
@@ -59,15 +42,17 @@ const Home = () => {
           id="firstName"
           required
           type="name"
+          defaultValue={firstname}
           onChange={handleChange}
         />
       </div>
       <div>
         <label for="update-last-name">Last Name</label>
         <input
-          id="LastName"
+          id="lastName"
           required
           type="name"
+          defaultValue={lastname}
           onChange={handleChange}
         />
       </div>
@@ -89,12 +74,7 @@ const Home = () => {
         />
       </div>
       <button type="submit">Update my profile</button>
-      </form>
-
-      <div>
-        <p>Please type your email and password if you want to delete your account.</p>
-        <button type="submit" onClick={handleDelete}>Delete my account</button>
-      </div>
+    </form>
     </div>
     
   );

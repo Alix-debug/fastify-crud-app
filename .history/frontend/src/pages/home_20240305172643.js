@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { deleteUser, updateUser } from '../services/api';
 
 const Home = () => {
-  const navigate = useNavigate();
+
   const { firstname, lastname} = useParams();
   const [formData, setFormData] = useState();
 
@@ -22,9 +22,9 @@ const Home = () => {
       console.log('coucou HOME.js handleSubmit to update user', formData)
       // Make the API request
       const user = await updateUser(formData);
+
       // redirect to a home page with updated info
       console.log('User has been modified in successfully:', user);
-      navigate(`/home/${user.firstName}/${user.LastName}/${user.Email}}`);
     } catch (error) {
       // Handle error
       console.error('Error while trying to modify the user:', error);
@@ -41,7 +41,6 @@ const Home = () => {
 
       // redirect to a / page
       console.log('User has been deleted successfully:', result);
-      navigate('/');
     } catch (error) {
       // Handle error
       console.error('Error while trying to delete the user:', error);

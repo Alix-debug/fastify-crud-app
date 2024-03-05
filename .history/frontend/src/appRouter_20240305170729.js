@@ -4,7 +4,6 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
-import Default from './pages/Default';
 
 const AppRouter = () => {
   return (

@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const baseURL = window.location.hostname === 'localhost' ? 'http://localhost:8080/api' : 'http://172.29.128.1:8080/api';
-
 const api = axios.create({
-  baseURL: baseURL,
+  baseURL: 'http://localhost:8080/api',
 });
 
 // configure Basic Auth headers
@@ -57,8 +55,7 @@ export const updateUser = async (userData) => {
 // delete User
 export const deleteUser= async (userData) => {
   try {
-    console.log('deleteUser, api.js', userData);
-    const response = await api.delete(`/users/${userData.Email}/${userData.Password}`, setAuthHeaders(userData.Email, userData.Password));
+    const response = await api.delete(`/users/${userData.Email}/${userData.Password}`, setAuthHeaders(userData.email, userData.password));
     return response.data;
   } catch (error) {
     console.error('Error occured while deleting user:', error);

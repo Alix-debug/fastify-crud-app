@@ -37,7 +37,7 @@ const SignUp = () => {
         Email: formData.email,
         Password: formData.password,
       }
-      console.log('COUCOU SignUp', data);
+      console.log('COUCOU SignUp', data)
       // Make the API request
       const user = await createUser(data);
 

@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const baseURL = window.location.hostname === 'localhost' ? 'http://localhost:8080/api' : 'http://172.29.128.1:8080/api';
-
 const api = axios.create({
-  baseURL: baseURL,
+  baseURL: 'http://localhost:8080/api',
 });
 
 // configure Basic Auth headers
