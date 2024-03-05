@@ -5,7 +5,6 @@ import { signIn } from '../services/api';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
-    id: '',
     email: '',
     password: '',
   });
@@ -24,13 +23,14 @@ const SignIn = () => {
     e.preventDefault();
 
     try {
+      console.log('coucou formdata signin',formData)
       // Make the API request
       const user = await signIn(formData);
       console.log('coucou sign in user',user)
       // redirect to a home page
       console.log('User logged in successfully:', user);
       // Redirect to the home page with the user data as parameters
-      navigate(`/home/${user._id}/${user.firstName}/${user.LastName}/${user.Email}}`);
+      navigate(`/home/${user.firstName}/${user.LastName}/${user.Email}}`);
     } catch (error) {
       // Handle error 
       console.error('Error while trying to log in user:', error);
@@ -41,15 +41,6 @@ const SignIn = () => {
     <div>
       <h2>Sign In</h2>
       <form id="sign-in" onSubmit={handleSubmit}>
-      <div>
-        <label for="sign-in-id">User ID</label>
-        <input
-          id="id"
-          required
-          type="Id"
-          onChange={handleChange}
-        />
-      </div>
       <div>
         <label for="sign-in-email">Email</label>
         <input

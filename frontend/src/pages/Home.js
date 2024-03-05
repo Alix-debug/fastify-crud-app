@@ -4,12 +4,8 @@ import { updateUser } from '../services/api';
 
 const Home = () => {
 
-  const { id, firstname, lastname, email} = useParams();
-  const [formData, setFormData] = useState({
-    firstName: lastname,
-    LastName: firstname,
-    Email: email
-  });
+  const { firstname, lastname} = useParams();
+  const [formData, setFormData] = useState();
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -23,8 +19,9 @@ const Home = () => {
     e.preventDefault();
 
     try {
+      console.log('coucou HOME.js,formdata', formData)
       // Make the API request
-      const user = await updateUser(id,formData);
+      const user = await updateUser(formData);
 
       // redirect to a home page
       console.log('User has been modified in successfully:', user);
@@ -37,7 +34,6 @@ const Home = () => {
   return (
     <div>
       <h2>Welcome {firstname} {lastname}!</h2>
-      <p>ID: {id}</p>
       <h2>Modify My Profile</h2>
       <form id="update-profile" onSubmit={handleSubmit}>
       <div>
@@ -46,27 +42,24 @@ const Home = () => {
           id="firstName"
           required
           type="name"
-          defaultValue={firstname}
           onChange={handleChange}
         />
       </div>
       <div>
         <label for="update-last-name">Last Name</label>
         <input
-          id="lastName"
+          id="LastName"
           required
           type="name"
-          defaultValue={lastname}
           onChange={handleChange}
         />
       </div>
       <div>
         <label for="update-email">Email</label>
         <input
-          id="email"
+          id="Email"
           required
-          type="email"
-          defaultValue={email}
+          type="Email"
           onChange={handleChange}
         />
       </div>
